@@ -1,0 +1,86 @@
+Steps to create a django project
+  --> first install django using pip install django
+  --> create a project folder
+  --> open the terminal and inside the project folder type in the command "django-admin startup project "projectname ."
+"
+  --> the period (.) creates the project in the current project
+
+  --> settings.py module  is used to define various settings in our application
+  --> urls.py is used to define what the user will see on different pages of the app -- shopping cart, contacts etcetra
+  --> wsgi.py is the webserver gateaway Interface --- provides astandard interface between applications built with django and web servers.
+  --> manage.py we use it to manage our python project
+   e.g inside your project directory using the terminal add the following command:
+   (py manage.py runserver)
+   we can use it to create an app in our project example(products):
+   -->("py manage.py startapp products")--<You will have a package>
+         -->admin.py shows how the admin pannel of this app  will look like
+         -->apps.py is used for configuration settings of this app
+         -->models.py is used for modelling the cooncepts of this app using classes
+         --> tests.py used conducting automated tests on the app
+         --> views.py used to show what the user can se when navigating to a certain page
+
+--> URL Mapping - 
+ steps
+ 1. first go to the view.py module create a new fuction
+ 2. Go to the urls module of that app and define a new url path --> if there is none create one
+ 3. Then go to the urls.py in the root directory of the project
+ 4. Add the path of the url of your app in the url patterns list eg:
+  path("products/", include("products.urls")),
+ 
+-->Creating a Model in Your Django Project
+      yo go to your models.py package create a class and give it atributes
+      e.g
+    <class Product(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.FloatField()
+    stock = models.IntegerField()
+    image_url = models.CharField(max_length=2048)> etcetra
+
+--> Db sqlite  
+        drag and drop your database to your "db browser for sqllite"
+        --> You can automatically create  a table in your db using django by running the following command in the terminal ;
+        <py manage.py makemigrations>
+        ("No Changes Detected")--> this is brought by because by default Django does not know about your app this can be solved by :
+            --> Go back to your project root package for this case its "pyshop"
+            --> then enter the settings.py module
+            -->inside the settings.py module find the "INSTALLED_APPS" list
+            --> Now Register your app("in this  project --> products") in this list
+                add the apps name in the list
+        -->Enter the  same command again <py manage.py makemigrations>
+        --> Then enter another command <py manage.py migrate>
+        --> Now your database should be populated with tables
+
+ 
+<Django Admin >
+--> Creating a Super User
+        -type in the command <py manage.py createsuperuser>
+
+<Customizing The Admin Panel>
+--> Go to the admin.py module of your app i.e in the products package
+--> Create a new class and give it atributes like:
+    <class ProductAdmin(admin.ModelAdmin):
+    list_display = ("name", "price", "stock")> 
+
+
+Templates
+
+
+
+
+
+
+
+
+            
+          
+
+              
+
+
+
+        
+
+
+
+
+
